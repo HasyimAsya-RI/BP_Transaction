@@ -1,0 +1,142 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android           = "http://schemas.android.com/apk/res/android"
+    xmlns:app               = "http://schemas.android.com/apk/res-auto"
+    xmlns:tools             = "http://schemas.android.com/tools"
+    android:layout_width    = "match_parent"
+    android:layout_height   = "match_parent"
+    tools:context           = ".RegisterActivity">
+
+    <TextView
+        android:id                  = "@+id/txt_header"
+        android:layout_width        = "match_parent"
+        android:layout_height       = "wrap_content"
+        android:layout_marginTop    = "24dp"
+        android:layout_marginStart  = "24dp"
+        android:layout_marginEnd    = "24dp"
+        android:text                = "Daftar Akun"
+        android:textSize            = "20dp"
+        android:textStyle           = "bold"
+        android:textColor           = "@color/black"
+        app:layout_constraintTop_toTopOf        = "parent"
+        app:layout_constraintStart_toStartOf    = "parent"
+        app:layout_constraintEnd_toEndOf        = "parent" />
+
+    <TextView
+        android:id                  = "@+id/txt_email"
+        android:layout_width        = "match_parent"
+        android:layout_height       = "wrap_content"
+        android:layout_marginTop    = "32dp"
+        android:layout_marginStart  = "24dp"
+        android:layout_marginEnd    = "24dp"
+        android:text                = "Email"
+        android:textColor           = "@color/black"
+        app:layout_constraintTop_toBottomOf     = "@+id/txt_header"
+        app:layout_constraintStart_toStartOf    = "parent"
+        app:layout_constraintEnd_toEndOf        = "parent" />
+    <EditText
+        android:id                  = "@+id/registerEmail"
+        android:layout_width        = "match_parent"
+        android:layout_height       = "wrap_content"
+        android:layout_marginTop    = "8dp"
+        android:layout_marginStart  = "24dp"
+        android:layout_marginEnd    = "24dp"
+        android:ems                 = "10"
+        android:inputType           = "textEmailAddress"
+        android:textSize            = "14sp"
+        app:layout_constraintStart_toStartOf    = "parent"
+        app:layout_constraintEnd_toEndOf        = "parent"
+        app:layout_constraintTop_toBottomOf     = "@+id/txt_email" />
+
+    <TextView
+        android:id                  = "@+id/txt_personName"
+        android:layout_width        = "match_parent"
+        android:layout_height       = "wrap_content"
+        android:layout_marginTop    = "16dp"
+        android:layout_marginStart  = "24dp"
+        android:layout_marginEnd    = "24dp"
+        android:text                = "Nama"
+        android:textColor           = "@color/black"
+        app:layout_constraintTop_toBottomOf     = "@+id/registerEmail"
+        app:layout_constraintStart_toStartOf    = "parent"
+        app:layout_constraintEnd_toEndOf        = "parent" />
+    <EditText
+        android:id                  = "@+id/registerPersonName"
+        android:layout_width        = "match_parent"
+        android:layout_height       = "wrap_content"
+        android:layout_marginTop    = "8dp"
+        android:layout_marginStart  = "24dp"
+        android:layout_marginEnd    = "24dp"
+        android:ems                 = "10"
+        android:inputType           = "textPersonName"
+        android:textSize            = "14sp"
+        app:layout_constraintTop_toBottomOf     = "@+id/txt_personName"
+        app:layout_constraintStart_toStartOf    = "parent"
+        app:layout_constraintEnd_toEndOf        = "parent"
+        app:layout_constraintHorizontal_bias    = "0.497" />
+
+    <TextView
+        android:id                  = "@+id/txt_level"
+        android:layout_width        = "match_parent"
+        android:layout_height       = "wrap_content"
+        android:layout_marginTop    = "16dp"
+        android:layout_marginStart  = "24dp"
+        android:layout_marginEnd    = "24dp"
+        android:text                = "Level"
+        android:textColor           = "@color/black"
+        app:layout_constraintTop_toBottomOf     = "@+id/registerPersonName"
+        app:layout_constraintStart_toStartOf    = "parent"
+        app:layout_constraintEnd_toEndOf        = "parent" />
+    <EditText
+        android:id                  = "@+id/registerLevel"
+        android:layout_width        = "match_parent"
+        android:layout_height       = "wrap_content"
+        android:layout_marginTop    = "8dp"
+        android:layout_marginStart  = "24dp"
+        android:layout_marginEnd    = "24dp"
+        android:ems                 = "10"
+        android:inputType           = "textPersonName"
+        android:textSize            = "14sp"
+        app:layout_constraintTop_toBottomOf     = "@+id/txt_level"
+        app:layout_constraintStart_toStartOf    = "parent"
+        app:layout_constraintEnd_toEndOf        = "parent"
+        app:layout_constraintHorizontal_bias    = "0.497" />
+
+    <TextView
+        android:id                  = "@+id/txt_password"
+        android:layout_width        = "match_parent"
+        android:layout_height       = "wrap_content"
+        android:layout_marginTop    = "16dp"
+        android:layout_marginStart  = "24dp"
+        android:layout_marginEnd    = "24dp"
+        android:text                = "Kata Sandi"
+        android:textColor           = "@color/black"
+        app:layout_constraintTop_toBottomOf     = "@+id/registerLevel"
+        app:layout_constraintStart_toStartOf    = "parent"
+        app:layout_constraintEnd_toEndOf        = "parent" />
+    <EditText
+        android:id                  = "@+id/registerPassword"
+        android:layout_width        = "match_parent"
+        android:layout_height       = "wrap_content"
+        android:layout_marginTop    = "8dp"
+        android:layout_marginStart  = "24dp"
+        android:layout_marginEnd    = "24dp"
+        android:ems                 = "10"
+        android:inputType           = "textPassword"
+        android:textSize            = "14sp"
+        app:layout_constraintTop_toBottomOf     = "@+id/txt_password"
+        app:layout_constraintStart_toStartOf    = "parent"
+        app:layout_constraintEnd_toEndOf        = "parent" />
+
+    <Button
+        android:id                  = "@+id/buttonRegisterAccount"
+        android:layout_width        = "150dp"
+        android:layout_height       = "wrap_content"
+        android:layout_marginTop    = "24dp"
+        android:layout_marginEnd    = "24dp"
+        android:text                = "Simpan"
+        android:backgroundTint      = "#D02C1A"
+        app:layout_constraintTop_toBottomOf     = "@+id/registerPassword"
+        app:layout_constraintEnd_toEndOf        = "parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
