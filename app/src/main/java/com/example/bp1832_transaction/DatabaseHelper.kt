@@ -189,7 +189,7 @@ class DatabaseHelper( var context: Context ): SQLiteOpenHelper(
         newIdTrans   = lastIdTrans + 1
         val sdf      = SimpleDateFormat( "yyyy-MM-dd" )
         val tanggal  = sdf.format( Date() )
-        val username = "hasyim@students.amikom.ac.id"
+        val username = FragmentProfile.email
 
         // Insert Data Transaksi
         values.put( COLUMN_ID_TRANS, newIdTrans )
@@ -226,7 +226,6 @@ class DatabaseHelper( var context: Context ): SQLiteOpenHelper(
             newIdDetail += 1
             i += 1
         }
-
         dbSelect.close()
         dbInsert.close()
     }
@@ -276,6 +275,27 @@ class DatabaseHelper( var context: Context ): SQLiteOpenHelper(
     }
 
     /**  UPDATE  **/
+    fun updateAccount( email:String, name:String, level:String, password:String ) {
+        val db     = this.writableDatabase
+
+        // Input Data
+        val values = ContentValues()
+        values.put( COLUMN_EMAIL,    email )
+        values.put( COLUMN_NAME,     name )
+        values.put( COLUMN_LEVEL,    level )
+        values.put( COLUMN_PASSWORD, password )
+
+        val result = db.update( TABLE_ACCOUNT, values, COLUMN_EMAIL + " = ? ", arrayOf( email ) ).toLong()
+
+        // Menampilkan Informasi
+        if( result == (0).toLong() ) {
+            Toast.makeText( context, "Akun gagal diperbarui!", Toast.LENGTH_SHORT ).show()
+        }
+        else {
+            Toast.makeText( context, "Akun berhasil diperbarui.", Toast.LENGTH_SHORT ).show()
+        }
+        db.close()
+    }
     fun updateMenu( menu:MenuModel ) {
         val db     = this.writableDatabase
 
@@ -349,8 +369,9 @@ class DatabaseHelper( var context: Context ): SQLiteOpenHelper(
     }
 
     /**  Fungsi untuk Melakukan Validasi Login  **/
-    fun checkLogin( email:String, password:String): Boolean {
-        val colums        = arrayOf( COLUMN_NAME )
+    @SuppressLint("Range")
+    fun checkLogin(email:String, password:String): Boolean {
+        val colums        = arrayOf( COLUMN_EMAIL, COLUMN_NAME, COLUMN_LEVEL, COLUMN_PASSWORD )
         val db            = this.readableDatabase
         val selection     = "$COLUMN_EMAIL = ? AND $COLUMN_PASSWORD = ?"
         val selectionArgs = arrayOf( email, password )
@@ -366,13 +387,24 @@ class DatabaseHelper( var context: Context ): SQLiteOpenHelper(
         )
 
         val cursorCount = cursor.count
-        cursor.close()
-        db.close()
 
         // Check Data Available or Not
-        if( cursorCount > 0 )
-            return true
-        else
+        val result: Boolean
+        if( cursorCount > 0 ) {
+            result = true
+            // Set Data
+            if( cursor.moveToFirst() ) {
+                FragmentProfile.email    = cursor.getString( cursor.getColumnIndex( COLUMN_EMAIL ) )
+                FragmentProfile.name     = cursor.getString( cursor.getColumnIndex( COLUMN_NAME ) )
+                FragmentProfile.level    = cursor.getString( cursor.getColumnIndex( COLUMN_LEVEL ) )
+                FragmentProfile.password = cursor.getString( cursor.getColumnIndex( COLUMN_PASSWORD ) )
+            }
+        }
+        else {
             return false
+        }
+        cursor.close()
+        db.close()
+        return result
     }
 }

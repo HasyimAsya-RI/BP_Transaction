@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,10 +37,42 @@ class FragmentProfile : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate( R.layout.fragment_profile, container, false )
+        val view = inflater.inflate( R.layout.fragment_profile, container, false )
+
+        //instance
+        val textEmail:    TextView = view.findViewById( R.id.textEmailAccount )
+        val textNama:     EditText = view.findViewById( R.id.editTextPersonName )
+        val textLevel:    EditText = view.findViewById( R.id.editTextLevel )
+        val textPassword: EditText = view.findViewById( R.id.editTextPassword )
+        val buttonSave:   Button   = view.findViewById( R.id.buttonSaveAccount )
+
+        //set data
+        textEmail.text = email
+        textNama.setText( name )
+        textLevel.setText( level )
+        textPassword.setText( password )
+
+        buttonSave.setOnClickListener {
+            //object class databaseHelper
+            val databaseHelper = DatabaseHelper( this.requireContext() )
+            //declare data
+            email    = textEmail.text.toString().trim()
+            name     = textNama.text.toString().trim()
+            level    = textLevel.text.toString().trim()
+            password = textPassword.text.toString().trim()
+
+            //insert data
+            databaseHelper.updateAccount(email, name, level, password)
+        }
+
+        return view
     }
 
     companion object {
+        var email    = "Alamat Email"
+        var name     = "Nama"
+        var level    = "Level"
+        var password = "hasy1m"
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.

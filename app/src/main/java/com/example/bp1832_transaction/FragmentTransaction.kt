@@ -62,6 +62,17 @@ class FragmentTransaction : Fragment() {
         return view
     }
 
+    fun displayData() {
+        // Set Layout Recycler View
+        rvTransaksi.layoutManager = LinearLayoutManager( activity )
+        // Set Adapter Recycler View
+        rvTransaksi.adapter = TransaksiAdapter()
+
+        txtOrder.text = TransaksiAdapter.harga.toString()
+        txtTax.text   = ( TransaksiAdapter.harga * 0.10 ).toString()
+        txtTotal.text = ( TransaksiAdapter.harga + ( TransaksiAdapter.harga * 0.10 ) ).toString()
+    }
+
     companion object {
         lateinit var rvTransaksi: RecyclerView
         lateinit var txtOrder:    TextView
@@ -69,19 +80,6 @@ class FragmentTransaction : Fragment() {
         lateinit var txtTotal:    TextView
         lateinit var buttonPay:   Button
 
-        fun displayData() {
-            // Set Layout Recycler View
-//            rvTransaksi.layoutManager = LinearLayoutManager( activity )
-//            mRecyclerView.layoutManager = LinearLayoutManager( this, LinearLayoutManager.VERTICAL, false )
-//            rvTransaksi.layoutManager = LinearLayoutManager( this, LinearLayoutManager.VERTICAL, false )
-
-            // Set Adapter Recycler View
-            rvTransaksi.adapter       = TransaksiAdapter()
-
-            txtOrder.text = TransaksiAdapter.harga.toString()
-            txtTax.text   = ( TransaksiAdapter.harga * 0.10 ).toString()
-            txtTotal.text = ( TransaksiAdapter.harga + ( TransaksiAdapter.harga * 0.10 ) ).toString()
-        }
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
